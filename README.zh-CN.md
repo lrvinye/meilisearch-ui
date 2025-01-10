@@ -96,6 +96,10 @@ docker run -d --restart=always --name="meilisearch-ui" -p <your-port>:24900 ricc
 docker run -d --restart=always --name="meilisearch-ui" -p <your-port>:24900 -e BASE_PATH="/meilisearch-ui" riccoxie/meilisearch-ui:latest
 ```
 
+> [!WARNING]
+>
+> 请注意，如果你要使用自定义基础路径到功能，请使用完整版镜像，而不要使用`lite`变体镜像，具体请参考[问题](https://github.com/riccox/meilisearch-ui/issues/178).
+
 ### 单实例模式 Singleton mode
 
 参考这个[问题](https://github.com/riccox/meilisearch-ui/issues/43).
@@ -129,6 +133,7 @@ VITE_SINGLETON_API_KEY=your-api-key
 ```
 
 > [!CAUTION]
+>
 > **安全风险**
 >
 > 参考这个[问题](https://github.com/riccox/meilisearch-ui/issues/161).

@@ -1,4 +1,4 @@
-FROM node:22 AS build
+FROM node:22
 
 # Setting working directory.
 WORKDIR /opt/meilisearch-ui
@@ -11,13 +11,10 @@ COPY . .
 # Installing dependencies
 RUN pnpm install
 
-# Build the app
-RUN npm run build
-
-# -------
-FROM nginx
-
-COPY --from=build /opt/meilisearch-ui/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.conf
-
 EXPOSE 24900
+
+ENV NODE_ENV=prod
+
+RUN ["chmod", "+x", "./scripts/cmd.sh"]
+ENTRYPOINT ["./scripts/cmd.sh"]
+

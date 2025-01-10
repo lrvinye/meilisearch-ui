@@ -1,5 +1,6 @@
 import { cn } from '@/lib/cn';
 import type { FC } from 'react';
+import meiliLOGO from '@/assets/meili-logo.svg';
 
 export const Logo: FC<{
   className?: string;
@@ -12,7 +13,7 @@ export const Logo: FC<{
       target="_blank"
       rel="noreferrer"
     >
-      <img src={`/meili-logo.svg`} className={'logo flex-1'} alt="Meili logo" />
+      <img src={meiliLOGO} className={'logo flex-1'} alt="Meili logo" />
     </a>
   );
 };

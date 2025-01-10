@@ -97,6 +97,10 @@ For example, if you want to deploy this app to the `/meilisearch-ui` path, you c
 docker run -d --restart=always --name="meilisearch-ui" -p <your-port>:24900 -e BASE_PATH="/meilisearch-ui" riccoxie/meilisearch-ui:latest
 ```
 
+> [!WARNING]
+>
+> Please note that if you want to use a custom base path to the function, please use the full version image instead of the `lite` variant image. Please refer to [this issue](https://github.com/riccox/meilisearch-ui/issues/178) for details.
+
 ### Singleton mode
 
 See this [issue](https://github.com/riccox/meilisearch-ui/issues/43).
@@ -130,6 +134,7 @@ VITE_SINGLETON_API_KEY=your-api-key
 ```
 
 > [!CAUTION]
+>
 > **Security Risk**
 >
 > See this [issue](https://github.com/riccox/meilisearch-ui/issues/161).
