@@ -7,7 +7,7 @@
   "version": {
     "label": "Meilisearch Version"
   },
-  "db_size": "DB Size",
+  "db_size": "Instance DB Size",
   "meili_version": "Meili Version",
   "connection_failed": "Connection fail, go check your config! 🤥",
   "create_index": {

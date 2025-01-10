@@ -16,13 +16,15 @@ import { useTranslation } from 'react-i18next';
 import ReactJson from 'react-json-view';
 import { z } from 'zod';
 
-const searchSchema = z.object({
-  indexUids: z.string().array().optional(),
-  limit: z.number().positive().optional(),
-  from: z.number().nonnegative().optional(),
-  statuses: z.string().array().optional(),
-  types: z.string().array().optional(),
-});
+const searchSchema = z
+  .object({
+    indexUids: z.string().array().optional(),
+    limit: z.number().positive().optional(),
+    from: z.number().nonnegative().optional(),
+    statuses: z.string().array().optional(),
+    types: z.string().array().optional(),
+  })
+  .optional();
 
 type State = Pick<TasksQuery, 'indexUids' | 'statuses' | 'types'> & Required<Pick<TasksQuery, 'limit' | 'from'>>;
 

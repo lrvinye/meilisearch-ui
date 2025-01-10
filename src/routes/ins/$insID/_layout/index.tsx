@@ -6,7 +6,6 @@ import { useMeiliClient } from '@/hooks/useMeiliClient';
 import { useInstanceStats } from '@/hooks/useInstanceStats';
 import { useMemo } from 'react';
 import { Copyable } from '@/components/Copyable';
-import _ from 'lodash';
 import { useInstanceHealth } from '@/hooks/useInstanceHealth';
 import { IndexList } from '@/components/IndexList';
 import { TitleWithUnderline } from '@/components/title';
@@ -18,6 +17,7 @@ import { LoaderPage } from '@/components/loader';
 import { isSingletonMode } from '@/utils/conn';
 import { Footer } from '@/components/Footer';
 import { TimeAgo } from '@/components/timeago';
+import { filesize } from 'filesize';
 
 function InsDash() {
   const { t } = useTranslation('instance');
@@ -40,7 +40,7 @@ function InsDash() {
         key: t('db_size'),
         value: (
           <Skeleton placeholder={<Skeleton.Title />} active loading={!stats?.databaseSize}>
-            {`${_.ceil((stats?.databaseSize ?? 0) / 1048576, 2)} MB`}
+            {filesize(stats?.databaseSize ?? 0)}
           </Skeleton>
         ),
       },

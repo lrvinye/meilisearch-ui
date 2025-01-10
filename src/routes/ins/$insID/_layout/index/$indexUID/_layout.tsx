@@ -9,6 +9,9 @@ import { TitleWithUnderline } from '@/components/title';
 import { Button } from '@nextui-org/react';
 import { IndexPrimaryKey } from '@/components/indexPrimaryKey';
 import { TimeAgo } from '@/components/timeago';
+import { useInstanceStats } from '@/hooks/useInstanceStats';
+import { Skeleton } from '@douyinfe/semi-ui';
+import { filesize } from 'filesize';
 
 const InfoRow = ({ value, label }: { label: string; value: ReactNode }) => {
   return (
@@ -23,6 +26,7 @@ function IndexDash() {
   const { t } = useTranslation('index');
   const client = useMeiliClient();
   const currentIndex = useCurrentIndex(client);
+  const stats = useInstanceStats(client);
 
   console.debug('index dash page building', currentIndex);
 
@@ -45,6 +49,14 @@ function IndexDash() {
               }
             />
           )}
+          <InfoRow
+            label={t('instance:db_size')}
+            value={
+              <Skeleton placeholder={<Skeleton.Title />} active loading={!stats?.databaseSize}>
+                {filesize(stats?.databaseSize ?? 0)}
+              </Skeleton>
+            }
+          />
           <div className="flex flex-col gap-3 items-stretch">
             <Link to="" from="/ins/$insID/index/$indexUID">
               <Button fullWidth variant="light" size="sm">
@@ -93,7 +105,7 @@ function IndexDash() {
         </div>
       </div>
     );
-  }, [currentIndex.index, t]);
+  }, [currentIndex.index, stats?.databaseSize, t]);
 }
 
 export const Route = createFileRoute('/ins/$insID/_layout/index/$indexUID/_layout')({
